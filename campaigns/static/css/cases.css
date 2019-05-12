@@ -1,0 +1,36 @@
+.alert-form{
+
+}
+.reg-form form p label{
+    font-size: 16px;
+}
+.alert-form form p label{
+    font-size: 16px;
+}
+.alert-form form p textarea{
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.alert-form form input#id_first_name,
+.alert-form form input#id_last_name,
+.alert-form form input#id_email_address,
+.alert-form form input#id_mobile_number,
+.alert-form form input#id_affected_county,
+.alert-form form textarea#id_case_description
+{
+    border: 1px solid lavender;
+    border-radius: 5px;
+}
+
+.alert-form form ul.errorlist li{
+    background-color: red !important;
+    color: #fff !important;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+}

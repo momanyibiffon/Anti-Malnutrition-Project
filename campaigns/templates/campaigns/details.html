@@ -1,0 +1,33 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}Campaign{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row card">
+        <div class="col l7 s12 vertical-wrapper vote-sec1">
+            <h5><b>{{ campaign.open_campaign}}</b></h5>
+            <div class="divider"></div>
+            <h6><b>Group/Org Name:</b> {{ campaign.organization_or_group_name }}</h6>
+            <div class="divider"></div>
+            <h6><b>Description</b></h6>
+            <p>{{ campaign.group_or_org_description }}</p>
+            <div class="divider"></div>
+        </div>
+        <div class="col l5 s12 vertical-wrapper vote-sec2">
+            <img src="{{ campaign.supporting_image.url }}" alt=""width="100%" height="auto">
+
+            <div class="">
+                {% if user.is_authenticated %}
+                <a href="{% url 'campaigns:vote' campaign.id %}" class="btn btn-small light-blue darken-4">Vote</a>
+                <!--<p class="votes right"><b>Votes: </b>{{ campaign.total_votes }}</p>-->
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-small light-blue darken-4"> Login to Vote</a>
+                <a href="{% url 'accounts:signup' %}" class="btn btn-small light-blue darken-1 right">New Voter</a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}New Case{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="container">
+        <div class="row">
+            {% if messages %}
+            <ul class="messages card-panel green darken-1 white-text center">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="row">
+
+
+            <div class="col s6 vertical-wrapper">
+
+               <div class="valign" style="text-align: left;">
+
+                   <div class="">
+                       <h1 style="font-weight: bolder; text-align: right;"><span class="blue-text text-darken-4">Send an Alert</span><br><span>Save a life</span></h1>
+                   </div>
+
+               </div>
+
+            </div>
+
+            <div class="col s6 vertical-wrapper">
+               <div class="valign alert-form">
+
+                   <form action="" method="POST" enctype="multipart/form-data" class="card-panel">
+                       {% csrf_token %}
+                       <h5 class="">Send an Alert</h5>
+                       {{ form.as_p }}
+
+                       <input type="submit" value="Submit" class="btn btn-small light-blue darken-4">
+                   </form>
+
+               </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

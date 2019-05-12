@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>{% block title %}Anti-mal{% endblock %}</title>
+
+    {% load static %}
+    <!--Import Google Icon Font for materialize.css-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' media='screen,projection' %}"  media="screen,projection"/>
+   <!--Bootstrap css-->
+    <!--<link type="text/css" rel="stylesheet" href="{% static 'bootstrap\css\bootstrap.min.css' %}">-->
+    <!--Custom CSS-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/campaigns_index.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/cases.css' %}">
+
+</head>
+<body>
+    <div class="row">
+        <header>
+            <div class="">
+                <nav class="light-blue darken-4">
+                    <ul class="right hide-on-med-and-down">
+                        {% if user.is_authenticated %}
+                        <li><i><small><a href="{% url 'accounts:profile' user.id  %}">{{ user.username }}</a></small></i></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+                        {% endif %}
+                      </ul>
+                    <div class="nav-wrapper container">
+                      <a href="#!" class="brand-logo">Nutritious Kenya</a>
+                      <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                      <ul class="right hide-on-med-and-down">
+                        <li><a href="{% url 'campaigns:index' %}">Home</a></li>
+                        <li><a href="{% url 'campaigns:posted_campaigns' %}">Campaigns</a></li>
+                        <li><a href="{% url 'cases:index' %}">Alerts</a></li>
+                        <li><a href="">Contributions</a></li>
+                      </ul>
+                    </div>
+                </nav>
+
+                <!--Mobile Materialize css navbar with menu-->
+                  <ul class="sidenav" id="mobile-nav">
+                      <li><a href="#">Home</a></li>
+                      <li><a href="#">Campaigns</a></li>
+                      <li><a href="#">Contributions</a></li>
+                      <ul class="right">
+                        {% if user.is_authenticated %}
+                        <li><i><small>{{ user.username }}</small></i></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+                        {% endif %}
+                      </ul>
+                  </ul>
+            </div>
+        </header>
+    </div>
+    <div class="row main-content-section">
+        <main>
+            {% block content %}
+                <p>Main contect section</p>
+            {% endblock %}
+        </main>
+    </div>
+    <div class="row">
+        <footer>
+            <div class="container">
+                <div class="divider"></div>
+                <div class="col l6 s12 vertical-wrapper footer-links">
+                    <div class="valign">
+                        <ul>
+                            <li><a href="">Terms of Use</a></li>
+                            <li><a href="">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col l6 s12 vertical-wrapper copyright">
+                    <div class="valign">
+                        <p class="right">Copyright &copy;2019. | All rights reserved | A product of B.M.M</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!--JQuery-->
+    <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <!--Bootstrap js-->
+    <!--<script type="text/javascript"src="{% static 'bootstrap\js\bootstrap.min.js' %}"></script>-->
+    <!--Materialize js-->
+    <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
+
+    <!--Custom JS-->
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

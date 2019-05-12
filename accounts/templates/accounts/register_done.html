@@ -1,0 +1,25 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div class="row login-main">
+        <div class="container">
+            <div class="row">
+                {% if messages %}
+                <ul class="messages card-panel green darken-1 white-text center">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="card-panel center">
+                    <h6>Welcome to Nutritious Kenya</h6>
+                    <p>You can now add campaign proposals and report malnutrition cases</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

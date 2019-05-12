@@ -1,0 +1,77 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}Open Campaigns{% endblock %}
+
+{% block content %}
+    <div class="row campaigns-main">
+        <div class="container">
+
+
+            {% if messages %}
+            <ul class="messages card-panel green darken-1 white-text center">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="col s12 card-panel">
+                <div class="divider"></div>
+                <div class="" style="background-color: lavender; padding: 10px 4px;">
+                    <h5 style="font-weight: bold;">{{ title }}</h5>
+                </div>
+                <div class="divider"></div>
+
+                {% if campaigns %}
+                    <table>
+                        <thead>
+                          <tr>
+                              <th>Campaign Title</th>
+                              <th>Region</th>
+                              <th>Target</th>
+                              <th>Start Date</th>
+                              <th>End Date</th>
+                              <th></th>
+                              <th>Action</th>
+                              <!--<th>Status</th>-->
+
+                          </tr>
+                        </thead>
+                        {% for campaign in campaigns %}
+
+                            <tbody>
+                              <tr>
+                                <td>{{ campaign.campaign_title }}</td>
+                                <td>{{ campaign.region }}</td>
+                                <td>{{ campaign.target_population }}</td>
+                                <td>{{ campaign.running_from }}</td>
+                                <td>{{ campaign.running_to }}</td>
+                                <td><img src="{{ campaign.thumbnail.url }}" alt="Campaign" width="100px" height="auto"></td>
+                                <!--<td><span class="">{{ campaign.status }}</span></td>-->
+                                {% if user.is_authenticated %}
+                                <td>
+                                    <a id="scale-demo" href="{{ campaign.id }}/add_campaign" class="btn-floating scale-transition light-blue darken-2">
+                                        <i class="material-icons">add</i>
+                                    </a>
+                                    <!--<a href="{{ campaign.id }}/add_campaign" class="btn btn-small light-blue darken-2"><i class="small material-icons">add</i> Campaign</a>--></td>
+                                  <!--<td><a href="http://127.0.0.1:8000/admin/campaigns/campaign/add/" target="_blank" class="btn btn-small light-blue darken-2">Add Campaign</a></td>-->
+                                {% else %}
+                                <td><a href="{% url 'login' %}" class="btn btn-small light-blue darken-4"> <i class="small material-icons">add</i> campaign</a></td>
+                                {% endif %}
+
+
+                              </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+
+                {% else %}
+                    <div class="card-panel center hoverable" style="border: 1px solid black">
+                        <p>Sorry! There are no open campaigns at the moment, please come back later.</p>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}Vote{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h4>{{ title }}</h4>
+    </div>
+    <div class="">
+        {% if messages %}
+        <ul class="messages card-panel red darken-1 white-text center">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="row card-panel hoverable">
+
+
+        <div class="row">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <!--{{ form.as_p }}-->
+
+                <div class="row">
+                    <div class="col l7 s12 vertical-wrapper vote-sec1">
+
+                        <div class="row">
+                            <div class="col l8 s12 vertical-wrapper">
+                                <label>Voter's name</label>
+                                <input type="text" name="voter_name" value="{% if user.is_authenticated %}{{ user.username }}{% endif %}
+                                " readonly>
+                            </div>
+                            <div class="col l4 s12 vertical-wrapper">
+                                <label>Voter's ID</label>
+                                <input type="text" name="voter_id" value="{% if user.is_authenticated %}{{ user.id }}{% endif %}" readonly>
+                            </div>
+                        </div>
+
+                        <label>Campaign Applied</label>
+                        <input type="text" name="open_campaign" value="{{ campaign.open_campaign}}" readonly>
+                        <label>Applicant name</label>
+                        <input type="text" name="organization_or_group_name" value="{{ campaign.organization_or_group_name }}" readonly>
+
+                    </div>
+                    <div class="col l5 s12 vertical-wrapper vote-sec2">
+                        <img src="{{ campaign.supporting_image.url }}" alt=""width="100%" height="auto">
+                        <label>Date</label>
+                        <input type="text" name="vote_time" value="{{ date }}" readonly>
+                    </div>
+                </div>
+
+                <input type="submit" value="Submit Vote" class="btn btn-small light-blue darken-4">
+                <a href="{% url 'campaigns:details' campaign.id %}" class="btn btn-small light-blue">Cancel</a>
+                <a href="{% url 'campaigns:index' %}" class="btn btn-small light-blue darken-2">Change Campaign</a>
+
+            </form>
+            <!--<form action="{% url 'campaigns:vote' campaign.id %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" value="Vote" class="btn btn-small light-blue darken-4">
+
+            </form>-->
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

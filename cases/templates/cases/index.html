@@ -1,0 +1,75 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}Malnutrition cases reported{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="container">
+        <div class="row">
+
+            <div class="col s5">
+                <div class="">
+                    <h4>{{ title }}</h4>
+                    <div class="divider"></div>
+                    <p style="font-size: 18px;">Have you spotted any malnutrition case, take a step now <br>and report the case so that we can follow up.</p>
+                    <h5 class="">Take an action now!!</h5>
+                    <p style="font-size: 18px; font-weight: bold;">
+                        Send us an alert now.
+
+                        {% if user.is_authenticated%}
+                        <a id="scale-demo" href="{% url 'cases:new_case' %}" class="btn-floating btn-large scale-transition
+                        light-blue darken-2 hoverable">
+                            <i class="material-icons">add</i>
+                        </a>
+                        {% else %}
+                        <p>Login to submit alert <a href="{% url 'login' %}" class="btn btn-small light-blue darken-4">Login</a></p>
+                        {% endif %}
+
+
+
+                    </p>
+
+
+
+                </div>
+            </div>
+            <div class="col s7 vertical-wrapper">
+
+               <div class="valign" style="text-align: right;">
+
+                   <div class="">
+                       <h4>Latest Alerts</h4>
+
+                        {% if recent_cases %}
+                            {% for rc in recent_cases %}
+                               <div class="row hoverable" style="border: 1px solid lavender; padding: 10px;">
+                                   <div class="col s5">
+                                       <img src="{{ rc.supportive_image.url }}" alt="Campaign" width="250px" height="auto">
+                                   </div>
+                                   <div class="col s7">
+                                       <h6><b>County</b></h6>
+                                       <p>{{ rc.affected_county }}</p>
+                                        <h6><b>Affected persons</b></h6>
+                                       <p>{{ rc.affected_persons }}</p>
+                                   </div>
+                               </div>
+
+                           {% endfor %}
+                        {% else %}
+                            <div class="card-panel">
+                                 <p class="red-text" style="font-size: 20px;">No alerts available at the moment</p>
+                            </div>
+
+                        {% endif %}
+
+
+                   </div>
+
+               </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

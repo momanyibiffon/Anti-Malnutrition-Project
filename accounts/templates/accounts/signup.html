@@ -1,0 +1,42 @@
+{% extends 'campaigns/base_layout.html' %}
+
+{% block title %}SignUp{% endblock %}
+
+{% block content %}
+    <div class="row login-main">
+        <div class="container">
+            <div class="row">
+                {% if messages %}
+                <ul class="messages card-panel green darken-1 white-text center">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col l7 s12 vertical-wrapper">
+                    <div class="valign">
+
+                    </div>
+                </div>
+                <div class="col l5 s12 vertical-wrapper">
+                    <div class="valign reg-form">
+                        <form action="" method="POST" class="card-panel">
+                            <h5>Signup</h5>
+                            <div class="divider"></div>
+                            {% csrf_token %}
+                            <!--{{ user_form.as_p }}-->
+                            {{ form.as_p }}
+                            <input type="submit" value="Signup" class="btn light-blue darken-4">
+                            <br><br>
+                            <div class="divider"></div>
+                            <br>
+                            Already have an account?<a href="{% url 'login' %}" class=""> Login</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

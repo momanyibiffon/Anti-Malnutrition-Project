@@ -1,0 +1,53 @@
+.campaigns-main{
+
+}
+.campaigns-main .card-wrapper{
+
+}
+.campaigns-main .card-wrapper .card{
+
+}
+.campaigns-main .card-wrapper .card .card-image{
+
+}
+
+@media(min-width: 600px){
+    .campaigns-main .card-wrapper .card{
+        height: 300px;
+        min-height: 300px;
+        max-height: 300px;
+    }
+    .campaigns-main .card-wrapper .card .card-image{
+        height: 160px;
+        overflow: hidden;
+    }
+}
+
+@media(min-width: 600px){
+
+}
+.campaigns-main .card-wrapper .card .card-image img{
+
+}
+.campaigns-main .card-wrapper .card .card-content{
+
+}
+.campaigns-main .card-wrapper .card .card-content .card-title{
+
+}
+.campaigns-main .card-wrapper .card .card-content .card-title a{
+    color: #000000;
+    font-size: 21px;
+    transition: all 0.5s;
+}
+.campaigns-main .card-wrapper .card .card-content .card-title a:hover{
+    color: blue;
+}
+@media(max-width: 600px){
+    .campaigns-main .card-wrapper .card .card-content .card-title a{
+        font-size: 17px;
+    }
+}
+.campaigns-main .card-wrapper .card .card-reveal{
+
+}

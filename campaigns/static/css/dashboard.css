@@ -1,0 +1,13 @@
+.tabs{
+    height: auto;
+    white-space: normal;
+}
+.tab{
+    display: block;
+    width: 100%;
+
+}
+.tab a{
+    text-align: left;
+    color: #000000 !important;
+}
